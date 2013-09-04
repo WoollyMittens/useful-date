@@ -1,0 +1,238 @@
+/*
+	Reference styling for a date picker
+*/
+@media all {
+  /*
+  	Definitions
+  */
+  /*
+  	Buttons
+  */
+  /*
+  	calendar input field
+  */
+  span.date, input.date, input[type=date] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+  }
+
+  span.date {
+    position: relative;
+  }
+  span.date span.date_button {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    background: #ffffff;
+    border: solid 1px #000;
+    cursor: pointer;
+    display: block;
+    font-size: 10px;
+    height: 17px;
+    line-height: 1.1;
+    margin: -8px 0 0 0;
+    overflow: hidden;
+    position: absolute;
+    right: 5px;
+    text-align: center;
+    top: 50%;
+    width: 17px;
+  }
+  span.date span.date_button span {
+    display: block;
+    border-top: solid 4px #c00;
+  }
+
+  /*
+  	calendar popup
+  */
+  div.date_popup {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: -webkit-gradient(linear, to bottom, to top, color-stop(0%, #ffffff), color-stop(80%, #ffffff), color-stop(80%, #ffffff), color-stop(100%, #cccccc));
+    background: -webkit-linear-gradient(to bottom, #ffffff 0%, #ffffff 80%, #ffffff 80%, #cccccc 100%);
+    background: -moz-linear-gradient(to bottom, #ffffff 0%, #ffffff 80%, #ffffff 80%, #cccccc 100%);
+    background: -o-linear-gradient(to bottom, #ffffff 0%, #ffffff 80%, #ffffff 80%, #cccccc 100%);
+    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 80%, #ffffff 80%, #cccccc 100%);
+    -webkit-box-shadow: 0 1px 3px #999999;
+    -moz-box-shadow: 0 1px 3px #999999;
+    box-shadow: 0 1px 3px #999999;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    border: solid 1px #333;
+    position: absolute;
+    width: 24em;
+  }
+  div.date_popup * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  div.date_popup strong, div.date_popup div.date_selectors {
+    left: 50%;
+    margin-left: -8em;
+    position: absolute;
+    text-align: center;
+    top: 1em;
+    width: 16em;
+  }
+  div.date_popup strong {
+    display: none;
+  }
+  div.date_popup div.date_selectors select {
+    margin: 2px;
+  }
+  div.date_popup button {
+    position: absolute;
+    padding: 0 5px;
+  }
+  div.date_popup button.date_previous_month {
+    left: 1em;
+    top: 1em;
+    padding: 0 10px;
+  }
+  div.date_popup button.date_next_month {
+    right: 1em;
+    top: 1em;
+    padding: 0 10px;
+  }
+  div.date_popup button.date_previous_year {
+    display: none;
+    left: 1em;
+    top: 1em;
+  }
+  div.date_popup button.date_next_year {
+    display: none;
+    right: 1em;
+    top: 1em;
+  }
+  div.date_popup button.date_today {
+    right: 1em;
+    bottom: 1em;
+  }
+  div.date_popup button.date_clear {
+    left: 1em;
+    bottom: 1em;
+  }
+  div.date_popup div.date_calendar {
+    padding: 5em 1em 5em 1em;
+  }
+  div.date_popup div.date_calendar table {
+    border-collapse: collapse;
+    border: solid 1px #666;
+    margin: 0;
+    width: 100%;
+  }
+  div.date_popup div.date_calendar table tr {
+    vertical-align: middle;
+  }
+  div.date_popup div.date_calendar table th, div.date_popup div.date_calendar table td {
+    border: solid 1px #666;
+    padding: 3px;
+    text-align: center;
+    width: 14%;
+  }
+  div.date_popup div.date_calendar table thead tr th {
+    background: #ccc;
+  }
+  div.date_popup div.date_calendar table thead tr th.date_first {
+    background: #bbb;
+  }
+  div.date_popup div.date_calendar table thead tr th.date_last {
+    background: #bbb;
+  }
+  div.date_popup div.date_calendar table tbody tr td {
+    background: #fff;
+  }
+  div.date_popup div.date_calendar table tbody tr td span, div.date_popup div.date_calendar table tbody tr td a {
+    color: #333;
+    display: block;
+    margin: -3px;
+    padding: 3px;
+    text-decoration: none;
+  }
+  div.date_popup div.date_calendar table tbody tr td a:hover {
+    background: #9cf;
+  }
+  div.date_popup div.date_calendar table tbody tr td span {
+    color: #999;
+  }
+  div.date_popup div.date_calendar table tbody tr td.date_first {
+    background: #eee;
+  }
+  div.date_popup div.date_calendar table tbody tr td.date_last {
+    background: #eee;
+  }
+  div.date_popup div.date_calendar table tbody tr td.date_current {
+    background: #69c;
+  }
+  div.date_popup div.date_calendar table tbody tr td.date_current span, div.date_popup div.date_calendar table tbody tr td.date_current a {
+    background: #69c;
+    color: #fff;
+  }
+
+  div.date_popup.date_hidden {
+    visibility: hidden;
+  }
+
+  div.date_popup.date_visible {
+    visibility: visible;
+  }
+}
+@media all {
+  button, .button {
+    -webkit-transition-property: background-color;
+    -moz-transition-property: background-color;
+    -o-transition-property: background-color;
+    transition-property: background-color;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease;
+    -moz-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    transition-timing-function: ease;
+    height: 48px;
+    height: 3rem;
+    line-height: 48px;
+    line-height: 3rem;
+    padding-top: 0px;
+    padding-top: 0rem;
+    padding-right: 16px;
+    padding-right: 1rem;
+    padding-bottom: 0px;
+    padding-bottom: 0rem;
+    padding-left: 16px;
+    padding-left: 1rem;
+    background-color: #ff6a00;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0;
+    overflow: visible;
+    text-decoration: none;
+  }
+  button:hover, .button:hover {
+    background-color: #ff9800;
+    color: #fff;
+    text-decoration: none;
+  }
+  button.disabled, button.disabled:hover, .button.disabled, .button.disabled:hover {
+    background-color: #7f7f7f;
+  }
+}

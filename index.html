@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>useful.date.js: Date Picker</title>
+		<style>
+			html { font-family:Sans-Serif; font-size:75%; height:100%; }
+			body { _height:100%; line-height:180%; margin:0; min-height:100%; padding:1%; }
+			.example { max-width:960px; margin:0 auto; padding:0; clear:both; }
+			.example > article, .example > aside { width:98%; padding:2%; }
+			.example-left > article, .example-left > aside { width:48%; padding:1%; float:left; }
+			.example-right > article, .example-right > aside { width:48%; padding:1%; float:right; }
+		</style>
+		<!--[if lte IE 9]>
+			<meta http-equiv="imagetoolbar" content="no"/>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<section class="example example-right">
+			<article>
+				<h2>Date Picker</h2>
+				<p>An alternative for the HTML5 date input element.</p>
+				<p><a class="button downloadButton" href="http://github.com/WoollyMittens/useful-date" target="_blank">Download (GitHub)</a></p>
+			</article>
+			<aside>
+
+				<!-- Cut below this -->
+				<style>@import url("./css/date.css")</style>
+				<form>
+					<label>
+						Date:
+						<input name="exampledate" pattern="^.+$" class="date" type="date" title="Pick a date" value=""  placeholder="day/month/year"/>
+					</label>
+				</form>
+				<script src="./js/date.min.js"></script>
+				<script>
+				//<!--
+					// create new instances of the script
+					var dates = new useful.Instances(
+						document.querySelectorAll('input.date'),
+						useful.Date,
+						{
+							// names
+							'years' : [20, -120],
+							'months' : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+							'days' : ['s', 'm', 't', 'w', 't', 'f', 's'],
+							// format of the output date options: d, m, M, y
+							'format' : 'd/m/y',
+							// browsers that are assumed to have native support for <input type='range'/>
+							'support' : navigator.userAgent.match(/webkit|opera|msie 10/gi)
+						}
+					);
+					// wait for the document to load and then start all instances
+					dates.wait();
+				//-->
+				</script>
+				<!-- Cut above this -->
+
+			</aside>
+		</section>
+	</body>
+</html>
