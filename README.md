@@ -2,7 +2,7 @@
 
 An alternative for the HTML5 date input element.
 
-Try the <a href="http://www.woollymittens.nl/useful/default.php?url=date">demo</a>.
+Try the <a href="http://www.woollymittens.nl/useful/default.php?url=useful-date">demo</a>.
 
 ## How to include the script
 
