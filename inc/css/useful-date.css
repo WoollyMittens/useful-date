@@ -6,11 +6,39 @@
   	Definitions
   */
   /*
+  	Constants
+  */
+  /*
+  	Hides text in the margin
+  */
+  /*
+  	Turns a button into an icon
+  */
+  /*
+  	Centres a graphic inside an icon
+  */
+  /*
+  	Offers both the pixel and rem value of a single property
+  */
+  /*
+  	Offers both the pixel and rem values of a shorthand property
+  */
+  /*
+  	Offers the text size as both the pixel and rem value
+  */
+  /*
+  	Adds vendor prefixed to a property
+  */
+  /*
+  	Applies the "clearfix" hack to a container with floating content
+  */
+  /*
   	Typography
   */
   /*
   	calendar input field
   */
+  /* line 12, ../../src/scss/useful-date.scss */
   span.date, input.date, input[type=date] {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -19,9 +47,11 @@
     width: 100%;
   }
 
+  /* line 17, ../../src/scss/useful-date.scss */
   span.date {
     position: relative;
   }
+  /* line 19, ../../src/scss/useful-date.scss */
   span.date span.date_button {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -41,11 +71,12 @@
     margin: -8px 0 0 0;
     overflow: hidden;
     position: absolute;
-    right: 5px;
+    right: 1em;
     text-align: center;
     top: 50%;
     width: 17px;
   }
+  /* line 36, ../../src/scss/useful-date.scss */
   span.date span.date_button span {
     display: block;
     border-top: solid 4px #c00;
@@ -54,6 +85,7 @@
   /*
   	calendar popup
   */
+  /* line 45, ../../src/scss/useful-date.scss */
   div.date_popup {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -76,11 +108,13 @@
     position: absolute;
     width: 24em;
   }
+  /* line 54, ../../src/scss/useful-date.scss */
   div.date_popup * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
+  /* line 57, ../../src/scss/useful-date.scss */
   div.date_popup strong, div.date_popup div.date_selectors {
     left: 50%;
     margin-left: -8em;
@@ -89,74 +123,92 @@
     top: 1em;
     width: 16em;
   }
+  /* line 65, ../../src/scss/useful-date.scss */
   div.date_popup strong {
     display: none;
   }
+  /* line 69, ../../src/scss/useful-date.scss */
   div.date_popup div.date_selectors select {
     margin: 2px;
   }
+  /* line 73, ../../src/scss/useful-date.scss */
   div.date_popup button {
     position: absolute;
     padding: 0 5px;
   }
+  /* line 77, ../../src/scss/useful-date.scss */
   div.date_popup button.date_previous_month {
     left: 1em;
     top: 1em;
     padding: 0 10px;
   }
+  /* line 82, ../../src/scss/useful-date.scss */
   div.date_popup button.date_next_month {
     right: 1em;
     top: 1em;
     padding: 0 10px;
   }
+  /* line 87, ../../src/scss/useful-date.scss */
   div.date_popup button.date_previous_year {
     display: none;
     left: 1em;
     top: 1em;
   }
+  /* line 92, ../../src/scss/useful-date.scss */
   div.date_popup button.date_next_year {
     display: none;
     right: 1em;
     top: 1em;
   }
+  /* line 97, ../../src/scss/useful-date.scss */
   div.date_popup button.date_today {
     right: 1em;
     bottom: 1em;
   }
+  /* line 101, ../../src/scss/useful-date.scss */
   div.date_popup button.date_clear {
     left: 1em;
     bottom: 1em;
   }
+  /* line 105, ../../src/scss/useful-date.scss */
   div.date_popup div.date_calendar {
     padding: 5em 1em 5em 1em;
   }
+  /* line 107, ../../src/scss/useful-date.scss */
   div.date_popup div.date_calendar table {
     border-collapse: collapse;
     border: solid 1px #666;
     margin: 0;
     width: 100%;
   }
+  /* line 112, ../../src/scss/useful-date.scss */
   div.date_popup div.date_calendar table tr {
     vertical-align: middle;
   }
+  /* line 115, ../../src/scss/useful-date.scss */
   div.date_popup div.date_calendar table th, div.date_popup div.date_calendar table td {
     border: solid 1px #666;
     padding: 3px;
     text-align: center;
     width: 14%;
   }
+  /* line 123, ../../src/scss/useful-date.scss */
   div.date_popup div.date_calendar table thead tr th {
     background: #ccc;
   }
+  /* line 126, ../../src/scss/useful-date.scss */
   div.date_popup div.date_calendar table thead tr th.date_first {
     background: #bbb;
   }
+  /* line 129, ../../src/scss/useful-date.scss */
   div.date_popup div.date_calendar table thead tr th.date_last {
     background: #bbb;
   }
+  /* line 136, ../../src/scss/useful-date.scss */
   div.date_popup div.date_calendar table tbody tr td {
     background: #fff;
   }
+  /* line 138, ../../src/scss/useful-date.scss */
   div.date_popup div.date_calendar table tbody tr td span, div.date_popup div.date_calendar table tbody tr td a {
     color: #333;
     display: block;
@@ -164,30 +216,38 @@
     padding: 3px;
     text-decoration: none;
   }
+  /* line 145, ../../src/scss/useful-date.scss */
   div.date_popup div.date_calendar table tbody tr td a:hover {
     background: #9cf;
   }
+  /* line 148, ../../src/scss/useful-date.scss */
   div.date_popup div.date_calendar table tbody tr td span {
     color: #999;
   }
+  /* line 152, ../../src/scss/useful-date.scss */
   div.date_popup div.date_calendar table tbody tr td.date_first {
     background: #eee;
   }
+  /* line 155, ../../src/scss/useful-date.scss */
   div.date_popup div.date_calendar table tbody tr td.date_last {
     background: #eee;
   }
+  /* line 158, ../../src/scss/useful-date.scss */
   div.date_popup div.date_calendar table tbody tr td.date_current {
     background: #69c;
   }
+  /* line 160, ../../src/scss/useful-date.scss */
   div.date_popup div.date_calendar table tbody tr td.date_current span, div.date_popup div.date_calendar table tbody tr td.date_current a {
     background: #69c;
     color: #fff;
   }
 
+  /* line 170, ../../src/scss/useful-date.scss */
   div.date_popup.date_hidden {
     visibility: hidden;
   }
 
+  /* line 173, ../../src/scss/useful-date.scss */
   div.date_popup.date_visible {
     visibility: visible;
   }
@@ -196,6 +256,7 @@
   /*
   	The root element
   */
+  /* line 8, ../../src/scss/_typography.scss */
   html {
     font-family: Tahoma, Verdana, Arial, Sans-Serif;
     font-size: 75%;
@@ -205,8 +266,9 @@
   /*
   	Sections
   */
+  /* line 16, ../../src/scss/_typography.scss */
   body {
-    font-size: "12px";
+    font-size: 12px;
     font-size: 1rem;
     margin-top: 0px;
     margin-top: 0rem;
@@ -232,8 +294,9 @@
     min-height: 100%;
   }
 
+  /* line 26, ../../src/scss/_typography.scss */
   h1, h2, h3, h4, h5, h6 {
-    font-size: "12px";
+    font-size: 12px;
     font-size: 1rem;
     margin-top: 0px;
     margin-top: 0rem;
@@ -247,26 +310,31 @@
     font-weight: normal;
   }
 
+  /* line 32, ../../src/scss/_typography.scss */
   h1 {
-    font-size: "22.5px";
+    font-size: 22.5px;
     font-size: 1.875rem;
   }
 
+  /* line 35, ../../src/scss/_typography.scss */
   h2 {
-    font-size: "19.5px";
+    font-size: 19.5px;
     font-size: 1.625rem;
   }
 
+  /* line 38, ../../src/scss/_typography.scss */
   h3 {
-    font-size: "15px";
+    font-size: 15px;
     font-size: 1.25rem;
   }
 
+  /* line 41, ../../src/scss/_typography.scss */
   address {
     display: block;
     font-style: normal;
   }
 
+  /* line 45, ../../src/scss/_typography.scss */
   section, nav, article, aside, hgroup, header, footer {
     display: block;
   }
@@ -274,12 +342,14 @@
   /*
   	Grouping content
   */
+  /* line 51, ../../src/scss/_typography.scss */
   p {
-    font-size: "12px";
+    font-size: 12px;
     font-size: 1rem;
     display: block;
   }
 
+  /* line 55, ../../src/scss/_typography.scss */
   hr {
     margin-top: 12px;
     margin-top: 1rem;
@@ -298,6 +368,7 @@
     width: 100%;
   }
 
+  /* line 65, ../../src/scss/_typography.scss */
   ul {
     margin-top: 0px;
     margin-top: 0rem;
@@ -318,6 +389,7 @@
     display: block;
   }
 
+  /* line 71, ../../src/scss/_typography.scss */
   dl {
     margin-top: 0px;
     margin-top: 0rem;
@@ -330,6 +402,7 @@
     display: block;
   }
 
+  /* line 75, ../../src/scss/_typography.scss */
   dt {
     margin-top: 0px;
     margin-top: 0rem;
@@ -343,6 +416,7 @@
     font-weight: bold;
   }
 
+  /* line 80, ../../src/scss/_typography.scss */
   dd {
     margin-top: 0px;
     margin-top: 0rem;
@@ -355,6 +429,7 @@
     display: block;
   }
 
+  /* line 84, ../../src/scss/_typography.scss */
   pre, dialog, blockquote, ol {
     display: block;
   }
@@ -362,24 +437,29 @@
   /*
   	Text-level semantics
   */
+  /* line 90, ../../src/scss/_typography.scss */
   a {
     color: #ff6a00;
     text-decoration: underline;
   }
 
+  /* line 94, ../../src/scss/_typography.scss */
   a:hover {
     color: #ff9800;
     text-decoration: underline;
   }
 
+  /* line 98, ../../src/scss/_typography.scss */
   sub {
     line-height: 0;
   }
 
+  /* line 101, ../../src/scss/_typography.scss */
   sup {
     line-height: 0;
   }
 
+  /* line 104, ../../src/scss/_typography.scss */
   time, progress, meter {
     display: block;
   }
@@ -387,16 +467,19 @@
   /*
   	Embedded content
   */
+  /* line 110, ../../src/scss/_typography.scss */
   img {
     border: none;
     vertical-align: middle;
   }
 
+  /* line 114, ../../src/scss/_typography.scss */
   figure, figcaption, video, audio, canvas {
     display: block;
   }
 
   /* Tabular data */
+  /* line 118, ../../src/scss/_typography.scss */
   table {
     margin-top: 0px;
     margin-top: 0rem;
@@ -409,20 +492,24 @@
     border-collapse: collapse;
   }
 
+  /* line 122, ../../src/scss/_typography.scss */
   caption {
-    font-size: "15px";
+    font-size: 15px;
     font-size: 1.25rem;
     font-weight: bold;
     text-align: left;
   }
 
+  /* line 128, ../../src/scss/_typography.scss */
   tr {
     vertical-align: top;
   }
+  /* line 130, ../../src/scss/_typography.scss */
   tr:nth-child(2n) {
     background-color: #eeeeee;
   }
 
+  /* line 132, ../../src/scss/_typography.scss */
   th, td {
     padding-top: 6px;
     padding-top: 0.5rem;
@@ -434,6 +521,7 @@
     padding-left: 1rem;
   }
 
+  /* line 135, ../../src/scss/_typography.scss */
   th, th a, th a:hover {
     background-color: #ff9800;
     color: #fff;
@@ -446,6 +534,7 @@
   /*
   	Forms
   */
+  /* line 146, ../../src/scss/_typography.scss */
   form {
     margin-top: 0px;
     margin-top: 0rem;
@@ -457,6 +546,7 @@
     margin-left: 0rem;
   }
 
+  /* line 149, ../../src/scss/_typography.scss */
   fieldset {
     margin-top: 0px;
     margin-top: 0rem;
@@ -478,6 +568,7 @@
     border: none;
   }
 
+  /* line 155, ../../src/scss/_typography.scss */
   legend {
     margin-top: 0px;
     margin-top: 0rem;
@@ -491,13 +582,15 @@
     font-weight: bold;
   }
 
+  /* line 161, ../../src/scss/_typography.scss */
   input, button, select, textarea {
-    font-size: "12px";
+    font-size: 12px;
     font-size: 1rem;
     font-family: Tahoma, Verdana, Arial, Sans-Serif;
     vertical-align: baseline;
   }
 
+  /* line 166, ../../src/scss/_typography.scss */
   input[type=color], input[type=range], input[type=number], input[type=date], input[type=text], input[type=password], input[type=email], select, textarea {
     -webkit-box-shadow: inset 0 0 5px #cccccc;
     -moz-box-shadow: inset 0 0 5px #cccccc;
@@ -521,6 +614,7 @@
     font-family: Arial, Sans-Serif;
   }
 
+  /* line 176, ../../src/scss/_typography.scss */
   input[type=checkbox], input[type=radio] {
     margin-top: 8.4px;
     margin-top: 0.7rem;
@@ -532,6 +626,7 @@
     margin-left: 0rem;
   }
 
+  /* line 179, ../../src/scss/_typography.scss */
   select {
     height: 36px;
     height: 3rem;
@@ -539,6 +634,7 @@
     padding: 0.7rem;
   }
 
+  /* line 183, ../../src/scss/_typography.scss */
   textarea {
     height: 120px;
     height: 10rem;
@@ -546,6 +642,7 @@
     padding: 0.7rem;
   }
 
+  /* line 187, ../../src/scss/_typography.scss */
   button, .button {
     -webkit-transition-property: background-color;
     -moz-transition-property: background-color;
@@ -587,11 +684,13 @@
     overflow: visible;
     text-decoration: none;
   }
+  /* line 202, ../../src/scss/_typography.scss */
   button:hover, .button:hover {
     background-color: #ff9800;
     color: #fff;
     text-decoration: none;
   }
+  /* line 207, ../../src/scss/_typography.scss */
   button.disabled, button.disabled:hover, .button.disabled, .button.disabled:hover {
     background-color: #7f7f7f;
   }
@@ -599,6 +698,7 @@
   /*
   	Interactive elements
   */
+  /* line 214, ../../src/scss/_typography.scss */
   menu {
     margin-top: 0px;
     margin-top: 0rem;
@@ -622,11 +722,13 @@
   /*
   	Miscellaneous elements
   */
+  /* line 222, ../../src/scss/_typography.scss */
   div {
     display: block;
   }
 }
 @media all and (max-width: 480px) {
+  /* line 231, ../../src/scss/_typography.scss */
   html {
     font-size: 62.5%;
   }
