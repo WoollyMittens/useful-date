@@ -28,11 +28,15 @@
 			<aside>
 
 				<!-- Cut below this -->
-				<style>@import url("./inc/css/useful-date.css")</style>
+				<style>@import url("./inc/css/useful-date.css");</style>
 				<form>
 					<label>
-						Date:
-						<input name="exampledate" pattern="^.+$" class="date" type="date" title="Pick a date" value=""  placeholder="day/month/year"/>
+						Native:
+						<input name="exampledate" pattern="^.+$" type="date" title="Pick a date" value=""  placeholder="day/month/year"/>
+					</label>
+					<label>
+						Fallback:
+						<input name="exampledate" pattern="^.+$" class="date" type="text" title="Pick a date" value=""  placeholder="day/month/year"/>
 					</label>
 				</form>
 				<script src="./inc/js/useful-date.js"></script>
@@ -48,9 +52,7 @@
 							'months' : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
 							'days' : ['s', 'm', 't', 'w', 't', 'f', 's'],
 							// format of the output date options: d, m, M, y
-							'format' : 'd/m/y',
-							// browsers that are assumed to have native support for <input type='range'/>
-							'support' : navigator.userAgent.match(/webkit|opera|msie 10/gi)
+							'format' : 'd/m/y'
 						}
 					);
 				//-->
