@@ -1,29 +1,29 @@
 /*
-	Constants
+Constants
 */
 /*
-	Hides text in the margin
+Hides text in the margin
 */
 /*
-	Turns a button into an icon
+Turns a button into an icon
 */
 /*
-	Centres a graphic or glyph inside an icon
+Centres a graphic or glyph inside an icon
 */
 /*
-	Offers both the pixel and rem value of a single property
+Offers both the pixel and rem value of a single property
 */
 /*
-	Offers both the pixel and rem values of a shorthand property
+Offers both the pixel and rem values of a shorthand property
 */
 /*
-	Offers the text size as both the pixel and rem value
+Offers the text size as both the pixel and rem value
 */
 /*
-	Adds vendor prefixed to a property
+Adds vendor prefixed to a property
 */
 /*
-	Applies the "clearfix" hack to a container with floating content
+Applies the "clearfix" hack to a container with floating content
 */
 /*
 	calendar input field
@@ -43,7 +43,6 @@ span.date {
 /* line 15, ../../src/scss/useful-date.scss */
 span.date span.date_button {
   box-sizing: border-box;
-  -o-border-radius: 2px;
   border-radius: 2px;
   background: #ffffff;
   border: solid 1px #000;
@@ -72,11 +71,11 @@ span.date span.date_button span {
 /* line 41, ../../src/scss/useful-date.scss */
 div.date_popup {
   box-sizing: border-box;
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIvPjxzdG9wIG9mZnNldD0iODAlIiBzdG9wLWNvbG9yPSIjZmZmZmZmIi8+PHN0b3Agb2Zmc2V0PSI4MCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjY2NjY2MiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(80%, #ffffff), color-stop(80%, #ffffff), color-stop(100%, #cccccc));
   background: -webkit-linear-gradient(top, #ffffff 0%, #ffffff 80%, #ffffff 80%, #cccccc 100%);
-  background: linear-gradient(top, #ffffff 0%, #ffffff 80%, #ffffff 80%, #cccccc 100%);
-  box-shadow: 0 1px 3px #999999;
-  -o-border-radius: 3px;
+  background: linear-gradient(to bottom, #ffffff 0%, #ffffff 80%, #ffffff 80%, #cccccc 100%);
+  box-shadow: 0 1px 3px #999;
   border-radius: 3px;
   background-color: #ffffff;
   border: solid 1px #333;

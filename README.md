@@ -28,15 +28,15 @@ To enable the use of HTML5 tags in Internet Explorer 8 and lower, include *html5
 
 ## How to start the script
 
-This is the safest way of starting the script, but allows for only one target element at a time.
-
 ```javascript
-var date = new useful.Date( document.getElementById('id'), {
+var dates = new useful.Date().init({
+	'elements' : document.querySelectorAll('input.date'),
+	// names
 	'years' : [20, -120],
 	'months' : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
 	'days' : ['s', 'm', 't', 'w', 't', 'f', 's'],
-	'format' : 'd/m/y',
-	'support' : navigator.userAgent.match(/webkit|opera|msie 10/gi)
+	// format of the output date options: d, m, M, y
+	'format' : 'd/m/y'
 });
 ```
 
@@ -49,44 +49,6 @@ var date = new useful.Date( document.getElementById('id'), {
 **format : {string}** - The expected format of the date.
 
 **support : {boolean}** - A test to determine which browsers have native support for the date input element.
-
-### Using document.querySelectorAll
-
-This method allows CSS Rules to be used to apply the script to one or more nodes at the same time.
-
-```javascript
-var dates = new useful.Instances(
-	document.querySelectorAll('input.date'),
-	useful.Date,
-	{
-		'years' : [20, -120],
-		'months' : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-		'days' : ['s', 'm', 't', 'w', 't', 'f', 's'],
-		'format' : 'd/m/y',
-		'support' : navigator.userAgent.match(/webkit|opera|msie 10/gi)
-	}
-);
-```
-
-The "Instances" function clones the settings for each element in the CSS rule.
-
-### Using jQuery
-
-This method is similar to the previous one, but uses jQuery for processing the CSS rule and cloning the settings.
-
-```javascript
-var dates = [];
-$('input.date').each(function (index, element) {
-	dates[index] = new useful.Date( element, {
-		'years' : [20, -120],
-		'months' : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-		'days' : ['s', 'm', 't', 'w', 't', 'f', 's'],
-		'format' : 'd/m/y',
-		'support' : navigator.userAgent.match(/webkit|opera|msie 10/gi)
-	});
-	dates[index].start();
-});
-```
 
 ## How to build the script
 

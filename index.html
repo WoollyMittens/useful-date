@@ -43,18 +43,15 @@
 				<script>
 				//<!--
 					// create new instances of the script
-					var dates = new useful.Instances(
-						document.querySelectorAll('input.date'),
-						useful.Date,
-						{
-							// names
-							'years' : [20, -120],
-							'months' : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-							'days' : ['s', 'm', 't', 'w', 't', 'f', 's'],
-							// format of the output date options: d, m, M, y
-							'format' : 'd/m/y'
-						}
-					);
+					var dates = new useful.Date().init({
+						'elements' : document.querySelectorAll('input.date'),
+						// names
+						'years' : [20, -120],
+						'months' : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+						'days' : ['s', 'm', 't', 'w', 't', 'f', 's'],
+						// format of the output date options: d, m, M, y
+						'format' : 'd/m/y'
+					});
 				//-->
 				</script>
 				<!-- Cut above this -->
