@@ -387,1275 +387,645 @@ var useful = useful || {};
 })();
 
 /*
-
 Source:
-
 van Creij, Maurice (2014). "useful.date.js: Date input element", version 20141127, http://www.woollymittens.nl/.
 
-
-
 License:
-
 This work is licensed under a Creative Commons Attribution 3.0 Unported License.
-
 */
 
-
-
 // create the constructor if needed
-
 var useful = useful || {};
-
 useful.Date = useful.Date || function () {};
 
-
-
 // extend the constructor
-
 useful.Date.prototype.Calendar = function (parent) {
-
 	// properties
-
 	"use strict";
-
 	this.parent = parent;
-
 	this.cfg = parent.cfg;
-
 	this.obj = parent.obj;
-
 	// methods
-
 	this.setup = function () {
-
 		// set the browsed date to the same month as the selected date
-
 		this.cfg.reference = new Date(this.cfg.date.getFullYear(), this.cfg.date.getMonth(), 1);
-
 		// get the minimum and maximum dates
-
 		this.cfg.minimum = new Date(this.obj.getAttribute('min'));
-
 		if (isNaN(this.cfg.minimum)) {
-
 			this.cfg.minimum = new Date(0);
-
 		}
-
 		this.cfg.maximum = new Date(this.obj.getAttribute('max'));
-
 		if (isNaN(this.cfg.maximum) || this.cfg.maximum.getTime() === 0) {
-
 			this.cfg.maximum = new Date(2200, 1, 1);
-
 		}
-
 		// build the calendar container
-
 		this.cfg.calendar = document.createElement('div');
-
 		this.cfg.calendar.className = 'date_calendar';
-
 		this.cfg.popup.appendChild(this.cfg.calendar);
-
 	};
-
 	this.update = function () {
-
 		var a, b, offset, month, reference, count, table, thead, tbody, row, col, link, span;
-
 		// create a working reference
-
 		reference = new Date(this.cfg.reference.getFullYear(), this.cfg.reference.getMonth(), 1);
-
 		// create a table
-
 		table = document.createElement('table');
-
 		// create a table thead
-
 		thead = document.createElement('thead');
-
 		// add a row to the thead
-
 		row = document.createElement('tr');
-
 		// for all seven days
-
 		for (a = 0 , b = 7; a < b; a += 1) {
-
 			// create a cell
-
 			col = document.createElement('th');
-
 			col.innerHTML = this.cfg.days[a];
-
 			// if this is the first day in the week
-
 			if (a === 0) {
-
 				// assign it a classname
-
 				col.className = 'date_first';
-
 			}
-
 			// if this is the last day in the week
-
 			else if (a === 6) {
-
 				// assign it a classname
-
 				col.className = 'date_last';
-
 			}
-
 			// add the cell to the row in the thead
-
 			row.appendChild(col);
-
 		}
-
 		// add the row to the thead
-
 		thead.appendChild(row);
-
 		// add the thead to the table
-
 		table.appendChild(thead);
-
 		// create a table tbody
-
 		tbody = document.createElement('tbody');
-
 		// start a cell count
-
 		count = 1;
-
 		offset = 7 - reference.getDay() + 1;
-
 		if (offset > 6) {
-
 			offset = 0;
-
 		}
-
 		month = reference.getMonth();
-
 		// while there are days in this month left
-
 		while (month === reference.getMonth() && count < 32) {
-
 			// create a row
-
 			row = document.createElement('tr');
-
 			// for all days in the week
-
 			for (a = 0 , b = 7; a < b; a += 1) {
-
 				// create a cell
-
 				col = document.createElement('td');
-
 				// if this cell has a date in this month (at an offset)
-
 				if (count - offset === reference.getDate()) {
-
 					// if this date is not before the minimum or after the maximum
-
 					if (reference.getTime() > this.cfg.minimum.getTime() && reference.getTime() < this.cfg.maximum.getTime()) {
-
 						// fill the cell with the date
-
 						link = document.createElement('a');
-
 						link.innerHTML = reference.getDate();
-
 						link.href = '#' + reference.getDate() +
-
 						'-' + (reference.getMonth() + 1) +
-
 						'-' + reference.getFullYear();
-
 						col.appendChild(link);
-
 						// set its click handler
-
 						this.handleDateClick(link, new Date(
-
 							reference.getFullYear(),
-
 							reference.getMonth(),
-
 							reference.getDate()
-
 						));
-
 					}
-
 					// else
-
 					else {
-
 						// fill the cell with the date
-
 						span = document.createElement('span');
-
 						span.innerHTML = reference.getDate();
-
 						col.appendChild(span);
-
 					}
-
 					// update the reference date
-
 					reference = new Date(
-
 						reference.getFullYear(),
-
 						reference.getMonth(),
-
 						reference.getDate() + 1
-
 					);
-
 				}
-
 				// else
-
 				else {
-
 					// fill the cell with a blank
-
 					col.innerHTML = '';
-
 				}
-
 				// if this is the first day in the week
-
 				if (a === 0) {
-
 					// assign it a classname
-
 					col.className = 'date_first';
-
 				}
-
 				// if this is the last day in the week
-
 				else if (a === 6) {
-
 					// assign it a classname
-
 					col.className = 'date_last';
-
 				}
-
 				// if this is the current day
-
 				if (
-
 					reference.getFullYear() === this.cfg.date.getFullYear() &&
-
 					reference.getMonth() === this.cfg.date.getMonth() &&
-
 					reference.getDate() === this.cfg.date.getDate() + 1
-
 				) {
-
 					// assign it a classname
-
 					col.className += ' date_current';
-
 				}
-
 				// add the cell to the row
-
 				row.appendChild(col);
-
 				// update the counter
-
 				count += 1;
-
 			}
-
 			// add the row to the tbody
-
 			tbody.appendChild(row);
-
 		}
-
 		// add the tbody to the table
-
 		table.appendChild(tbody);
-
 		// clear the old content from the calendar
-
 		this.cfg.calendar.innerHTML = '';
-
 		// add the table to the calendar
-
 		this.cfg.calendar.appendChild(table);
-
 	};
-
 	this.handleDateClick = function (element, picked) {
-
 		var _this = this;
-
 		// set an event handler
-
 		element.onclick = function () {
-
 			// set the date from the picked cell
-
 			_this.cfg.date = picked;
-
 			// update the component
-
 			_this.parent.update();
-
 			// close the popup
-
 			_this.cfg.hover = false;
-
 			_this.parent.popup.remove();
-
 			// cancel the click
-
 			return false;
-
 		};
-
 	};
-
 };
 
-
-
 // return as a require.js module
-
 if (typeof module !== 'undefined') {
-
 	exports = module.exports = useful.Date.Calendar;
-
 }
 
-
 /*
-
 Source:
-
 van Creij, Maurice (2014). "useful.date.js: Date input element", version 20141127, http://www.woollymittens.nl/.
 
-
-
 License:
-
 This work is licensed under a Creative Commons Attribution 3.0 Unported License.
-
 */
 
-
-
 // create the constructor if needed
-
 var useful = useful || {};
-
 useful.Date = useful.Date || function () {};
 
-
-
 // extend the constructor
-
-useful.Date.prototype.Main = function (parent, cfg) {
-
+useful.Date.prototype.Main = function (cfg, parent) {
 	// properties
-
 	"use strict";
-
 	this.parent = parent;
-
 	this.cfg = cfg;
-
 	this.obj = cfg.element;
-
 	// methods
-
 	this.start = function () {
-
 		// build the interface
-
 		this.setup();
-
 		// start the updates
-
 		this.update();
-
 		// disable the start function so it can't be started twice
-
 		this.init = function () {};
-
 	};
-
 	this.setup = function () {
-
 		// measure the dimensions of the parent element if they are not given
-
 		this.cfg.width = this.cfg.width || this.obj.offsetWidth;
-
 		this.cfg.height = this.cfg.height || this.obj.offsetHeight;
-
 		// create a container around the element
-
 		this.cfg.container = document.createElement('span');
-
 		this.cfg.container.className = 'date';
-
 		// add the container into the label
-
 		this.obj.parentNode.insertBefore(this.cfg.container, this.obj);
-
 		// move the input element into the container
-
 		this.cfg.container.appendChild(this.obj.parentNode.removeChild(this.obj));
-
 		// add the pick button
-
 		this.cfg.button = document.createElement('span');
-
 		this.cfg.button.innerHTML = '<span>' + new Date().getDate() + '</span>';
-
 		this.cfg.button.className = 'date_button date_passive';
-
 		this.cfg.container.appendChild(this.cfg.button);
-
 		// set the event handlers
-
 		this.handleReverse(this.obj);
-
 		this.handlePick(this.cfg.button);
-
 		this.handleReset(document.body);
-
 	};
-
 	this.update = function () {
-
 		// if there is a valid date
-
 		if (this.cfg.date) {
-
 			// update the value
-
 			this.obj.value = this.cfg.format
-
 				.replace('d', this.cfg.date.getDate())
-
 				.replace('m', this.cfg.date.getMonth() + 1)
-
 				.replace('M', this.cfg.months[this.cfg.date.getMonth()])
-
 				.replace('y', this.cfg.date.getFullYear());
-
 		}
-
 		// else use today
-
 		else {
-
 			this.cfg.date = new Date();
-
 		}
-
 	};
-
 	this.handlePick = function (element) {
-
 		var _this = this;
-
 		// set an event handler
-
 		element.addEventListener('click', function (event) {
-
 			// construct the popup
-
 			_this.popup.setup();
-
 			// cancel the click
-
 			event.preventDefault();
-
 		}, false);
-
 	};
-
 	this.handleReset = function (element) {
-
 		var _this = this;
-
 		element.addEventListener('click', function (event) {
-
 			// construct the popup
-
 			_this.popup.remove();
-
 		}, false);
-
 	};
-
 	this.handleReverse = function (element) {
-
 		var _this = this;
-
 		element.addEventListener('keyup', function () {
-
 			var inputValue, inputParts, inputDate;
-
 			// preprocess problematic dates
-
 			inputValue = element.value;
-
 			switch (_this.cfg.format) {
-
 			case 'd/m/y':
-
 				inputParts = inputValue.split('/');
-
 				inputDate = (inputValue.length > 1) ? new Date(inputParts[2], inputParts[1] - 1, inputParts[0]) : new Date(inputValue);
-
 				break;
-
 			default :
-
 				inputDate = new Date(inputValue);
-
 			}
-
 			// try to interpret and update the date
-
 			if (!isNaN(inputDate)) {
-
 				_this.cfg.date = inputDate;
-
 			}
-
 		}, false);
-
 	};
-
 	// components
-
 	this.popup = new this.parent.Popup(this);
-
 	this.calendar = new this.parent.Calendar(this);
-
 	// go
-
 	this.start();
-
 	return this;
-
 };
 
-
-
 // return as a require.js module
-
 if (typeof module !== 'undefined') {
-
 	exports = module.exports = useful.Date;
-
 }
 
-
 /*
-
 Source:
-
 van Creij, Maurice (2014). "useful.date.js: Date input element", version 20141127, http://www.woollymittens.nl/.
 
-
-
 License:
-
 This work is licensed under a Creative Commons Attribution 3.0 Unported License.
-
 */
 
-
-
 // create the constructor if needed
-
 var useful = useful || {};
-
 useful.Date = useful.Date || function () {};
 
-
-
 // extend the constructor
-
 useful.Date.prototype.Popup = function (parent) {
-
 	// properties
-
 	"use strict";
-
 	this.parent = parent;
-
 	this.cfg = parent.cfg;
-
 	this.obj = parent.obj;
-
 	// methods
-
 	this.setup = function () {
-
 		// remove any existing popup
-
 		if (this.cfg.popup) {
-
 			this.cfg.popup.parentNode.removeChild(this.cfg.popup);
-
 		}
-
 		// reset its hover state
-
 		this.cfg.hover = false;
-
 		// build the popup container
-
 		this.cfg.popup = document.createElement('div');
-
 		this.cfg.popup.className = 'date_popup date_hidden';
-
 		// build the title
-
 		this.cfg.title = document.createElement('strong');
-
 		this.cfg.title.innerHTML = '{title}';
-
 		this.cfg.popup.appendChild(this.cfg.title);
-
 		// build a space for the selectors
-
 		this.cfg.selectors = document.createElement('div');
-
 		this.cfg.selectors.className = 'date_selectors';
-
 		this.cfg.popup.appendChild(this.cfg.selectors);
-
 		// build the months selector
-
 		this.addMonthSelector();
-
 		// build the years selector
-
 		this.addYearSelector();
-
 		// build the previous month button
-
 		this.cfg.previousMonth = document.createElement('button');
-
 		this.cfg.previousMonth.className = 'button date_previous_month';
-
 		this.cfg.previousMonth.innerHTML = '&lt;';
-
 		this.cfg.popup.appendChild(this.cfg.previousMonth);
-
 		this.handlePreviousMonth(this.cfg.previousMonth);
-
 		// build the next month button
-
 		this.cfg.nextMonth = document.createElement('button');
-
 		this.cfg.nextMonth.className = 'button date_next_month';
-
 		this.cfg.nextMonth.innerHTML = '&gt;';
-
 		this.cfg.popup.appendChild(this.cfg.nextMonth);
-
 		this.handleNextMonth(this.cfg.nextMonth);
-
 		// build the previous year button
-
 		this.cfg.previousYear = document.createElement('button');
-
 		this.cfg.previousYear.innerHTML = '&lt;&lt;';
-
 		this.cfg.previousYear.className = 'button date_previous_year';
-
 		this.cfg.popup.appendChild(this.cfg.previousYear);
-
 		this.handlePreviousYear(this.cfg.previousYear);
-
 		// build the next year button
-
 		this.cfg.nextYear = document.createElement('button');
-
 		this.cfg.nextYear.innerHTML = '&gt;&gt;';
-
 		this.cfg.nextYear.className = 'button date_next_year';
-
 		this.cfg.popup.appendChild(this.cfg.nextYear);
-
 		this.handleNextYear(this.cfg.nextYear);
-
 		// build the today button
-
 		this.cfg.today = document.createElement('button');
-
 		this.cfg.today.innerHTML = 'Today';
-
 		this.cfg.today.className = 'button date_today';
-
 		this.cfg.popup.appendChild(this.cfg.today);
-
 		this.handleToday(this.cfg.today);
-
 		// build the clear button
-
 		this.cfg.clear = document.createElement('button');
-
 		this.cfg.clear.innerHTML = 'Clear';
-
 		this.cfg.clear.className = 'button date_clear';
-
 		this.cfg.popup.appendChild(this.cfg.clear);
-
 		this.handleClear(this.cfg.clear);
-
 		// build the calendar
-
 		this.parent.calendar.setup();
-
 		// insert the popup into the document
-
 		document.body.appendChild(this.cfg.popup);
-
 		// position the popup
-
 		this.cfg.position = useful.positions.object(this.cfg.button);
-
 		this.cfg.limits = useful.positions.window();
-
 		this.cfg.position.x -= (this.cfg.position.x + this.cfg.popup.offsetWidth > this.cfg.limits.x) ? this.cfg.popup.offsetWidth : 0;
-
 		this.cfg.position.y -= (this.cfg.position.y + this.cfg.popup.offsetHeight > this.cfg.limits.y) ? this.cfg.popup.offsetHeight : 0;
-
 		this.cfg.popup.style.left = this.cfg.position.x + 'px';
-
 		this.cfg.popup.style.top = this.cfg.position.y + 'px';
-
 		// update the popup once
-
 		this.update();
-
 		// reveal the popup
-
 		this.reveal();
-
 		// set the event handler
-
 		this.handleOver(this.cfg.popup);
-
 		this.handleOut(this.cfg.popup);
-
 	};
-
 	this.addMonthSelector = function () {
-
 		var a, b, option;
-
 		// create a selector
-
 		this.cfg.monthPicker = document.createElement('select');
-
 		this.cfg.monthPicker.setAttribute('name', 'pickmonth');
-
 		// for every listed month
-
 		for (a = 0 , b = this.cfg.months.length; a < b; a += 1) {
-
 			// add and option to the selector for it
-
 			option = document.createElement('option');
-
 			option.innerHTML = this.cfg.months[a];
-
 			option.value = a;
-
 			this.cfg.monthPicker.appendChild(option);
-
 		}
-
 		// add the event handler
-
 		this.handleSelectMonth(this.cfg.monthPicker);
-
 		// add the selector to the popup
-
 		this.cfg.selectors.appendChild(this.cfg.monthPicker);
-
 	};
-
 	this.addYearSelector = function () {
-
 		var option, offset, year;
-
 		// create a selector
-
 		this.cfg.yearPicker = document.createElement('select');
-
 		this.cfg.yearPicker.setAttribute('name', 'pickyear');
-
 		// for the amount of years back
-
 		offset = this.cfg.years[0];
-
 		year = new Date().getFullYear();
-
 		while (offset !== this.cfg.years[1]) {
-
 			// add and option to the selector for it
-
 			option = document.createElement('option');
-
 			option.innerHTML = year + offset;
-
 			option.value = year + offset;
-
 			this.cfg.yearPicker.appendChild(option);
-
 			// update the counter
-
 			offset += (this.cfg.years[0] > this.cfg.years[1]) ? -1 : 1;
-
 		}
-
 		// add the event handler
-
 		this.handleSelectYear(this.cfg.yearPicker);
-
 		// add the selector to the popup
-
 		this.cfg.selectors.appendChild(this.cfg.yearPicker);
-
 	};
-
 	this.update = function () {
-
 		var a, b, referenceMonth, referenceYear, options;
-
 		// figure out the values
-
 		referenceMonth = this.cfg.reference.getMonth();
-
 		referenceYear = this.cfg.reference.getFullYear();
-
 		// update the title
-
 		this.cfg.title.innerHTML = this.cfg.months[referenceMonth] + ' ' + referenceYear;
-
 		// update the the year picker
-
 		options = this.cfg.yearPicker.getElementsByTagName('option');
-
 		for (a = 0 , b = options.length; a < b; a += 1) {
-
 			options[a].selected = (parseInt(options[a].value, 10) === referenceYear);
-
 		}
-
 		// update the month picker
-
 		options = this.cfg.monthPicker.getElementsByTagName('option');
-
 		for (a = 0 , b = options.length; a < b; a += 1) {
-
 			options[a].selected = (parseInt(options[a].value, 10) === referenceMonth);
-
 		}
-
 		// update the calendar
-
 		this.parent.calendar.update();
-
 	};
-
 	this.doNotClose = function () {
-
 		var _this = this;
-
 		// prevent closing the popup
-
 		this.cfg.hover = true;
-
 		// revert after a while
-
 		setTimeout(function () {
-
 			_this.cfg.hover = false;
-
 		}, 100);
-
 	};
-
 	this.reveal = function () {
-
 		var _this = this;
-
 		// reveal the popup
-
 		setTimeout(function () {
-
 			_this.cfg.popup.className = _this.cfg.popup.className.replace('date_hidden', 'date_visible');
-
 		}, 100);
-
 	};
-
 	this.remove = function () {
-
 		var _this = this;
-
 		// if the popup exists
-
 		if (_this.cfg.popup && !_this.cfg.hover) {
-
 			// hide the popup
-
 			_this.cfg.popup.className = _this.cfg.popup.className.replace('date_visible', 'date_hidden');
-
 		}
-
 	};
-
 	this.handleClear = function (element) {
-
 		var _this = this;
-
 		// set an event handler
-
 		element.onclick = function () {
-
 			// reset everything
-
 			_this.cfg.date = null;
-
 			_this.obj.value = '';
-
 			_this.cfg.hover = false;
-
 			_this.remove();
-
 			_this.parent.update();
-
 			// cancel the click
-
 			return false;
-
 		};
-
 	};
-
 	this.handleToday = function (element) {
-
 		var _this = this;
-
 		// set an event handler
-
 		element.onclick = function () {
-
 			// set the date to today
-
 			_this.cfg.date = new Date();
-
 			// update the component
-
 			_this.parent.update();
-
 			// close the popup
-
 			_this.cfg.hover = false;
-
 			_this.remove();
-
 			// cancel the click
-
 			return false;
-
 		};
-
 	};
-
 	this.handleNextMonth = function (element) {
-
 		var _this = this;
-
 		// set an event handler
-
 		element.onclick = function () {
-
 			// reduce the date by one year
-
 			_this.cfg.reference = new Date(_this.cfg.reference.getFullYear(), _this.cfg.reference.getMonth() + 1, _this.cfg.reference.getDate());
-
 			// redraw
-
 			_this.update();
-
 			// cancel the click
-
 			return false;
-
 		};
-
 	};
-
 	this.handlePreviousMonth = function (element) {
-
 		var _this = this;
-
 		// set an event handler
-
 		element.onclick = function () {
-
 			// reduce the date by one year
-
 			_this.cfg.reference = new Date(_this.cfg.reference.getFullYear(), _this.cfg.reference.getMonth() - 1, _this.cfg.reference.getDate());
-
 			// redraw
-
 			_this.update();
-
 			// cancel the click
-
 			return false;
-
 		};
-
 	};
-
 	this.handleSelectMonth = function (element) {
-
 		var _this = this;
-
 		// set an event handler
-
 		element.onchange = function () {
-
 			// keep the popup visible
-
 			_this.doNotClose();
-
 			// reduce the date by one year
-
 			_this.cfg.reference = new Date(_this.cfg.reference.getFullYear(), parseInt(element.value, 10), _this.cfg.reference.getDate());
-
 			// redraw
-
 			_this.update();
-
 		};
-
 	};
-
 	this.handleNextYear = function (element) {
-
 		var _this = this;
-
 		// set an event handler
-
 		element.onclick = function () {
-
 			// reduce the date by one year
-
 			_this.cfg.reference = new Date(_this.cfg.reference.getFullYear() + 1, _this.cfg.reference.getMonth(), _this.cfg.reference.getDate());
-
 			// redraw
-
 			_this.update();
-
 			// cancel the click
-
 			return false;
-
 		};
-
 	};
-
 	this.handlePreviousYear = function (element) {
-
 		var _this = this;
-
 		// set an event handler
-
 		element.onclick = function () {
-
 			// reduce the date by one year
-
 			_this.cfg.reference = new Date(_this.cfg.reference.getFullYear() - 1, _this.cfg.reference.getMonth(), _this.cfg.reference.getDate());
-
 			// redraw
-
 			_this.update();
-
 			// cancel the click
-
 			return false;
-
 		};
-
 	};
-
 	this.handleSelectYear = function (element) {
-
 		var _this = this;
-
 		// set an event handler
-
 		element.onchange = function () {
-
 			// keep the popup visible
-
 			_this.doNotClose();
-
 			// reduce the date by one year
-
 			_this.cfg.reference = new Date(parseInt(element.value, 10), _this.cfg.reference.getMonth(), _this.cfg.reference.getDate());
-
 			// redraw
-
 			_this.update();
-
 		};
-
 	};
-
 	this.handleOver = function (element) {
-
 		var _this = this;
-
 		// set an event handler
-
 		element.onmouseover = function () {
-
 			// set the hover state
-
 			_this.cfg.hover = true;
-
 		};
-
 	};
-
 	this.handleOut = function (element) {
-
 		var _this = this;
-
 		// set an event handler
-
 		element.onmouseout = function () {
-
 			// reset the hover state
-
 			_this.cfg.hover = false;
-
 		};
-
 	};
-
 };
 
-
-
 // return as a require.js module
-
 if (typeof module !== 'undefined') {
-
 	exports = module.exports = useful.Date.Popup;
-
 }
-
 
 /*
-
 Source:
-
 van Creij, Maurice (2014). "useful.date.js: Date input element", version 20141127, http://www.woollymittens.nl/.
 
-
-
 License:
-
 This work is licensed under a Creative Commons Attribution 3.0 Unported License.
-
 */
 
-
-
 // create the constructor if needed
-
 var useful = useful || {};
-
 useful.Date = useful.Date || function () {};
 
-
-
 // extend the constructor
-
 useful.Date.prototype.init = function (cfg) {
-
 	// properties
-
 	"use strict";
-
-	this.instances = [];
-
 	// methods
-
-	this.each = function (elements, cfg) {
-
-		var _cfg, instance;
-
-		// for all elements
-
-		for (var a = 0, b = elements.length; a < b; a += 1) {
-
-			// clone the configuration
-
-			_cfg = Object.create(cfg);
-
-			// insert the current element
-
-			_cfg.element = elements[a];
-
-			// start a new instance of the object
-
-			this.instances.push(new this.Main(this, _cfg));
-
-		}
-
+	this.only = function (cfg) {
+		// start an instance of the script
+		return new this.Main(cfg, this);
 	};
-
-	// go
-
-	this.each(cfg.elements, cfg);
-
-	this.init = function () {};
-
-	return this;
-
+	this.each = function (cfg) {
+		var _cfg, instances = [];
+		// for all element
+		for (var a = 0, b = cfg.elements.length; a < b; a += 1) {
+			// clone the cfguration
+			_cfg = Object.create(cfg);
+			// insert the current element
+			_cfg.element = cfg.elements[a];
+			// delete the list of elements from the clone
+			delete _cfg.elements;
+			// start a new instance of the object
+			instances[a] = new this.Main(_cfg, this);
+		}
+		// return the instances
+		return instances;
+	};
+	// return a single or multiple instances of the script
+	return (cfg.elements) ? this.each(cfg) : this.only(cfg);
 };
 
-
-
 // return as a require.js module
-
 if (typeof module !== 'undefined') {
-
 	exports = module.exports = useful.Date;
-
 }
-

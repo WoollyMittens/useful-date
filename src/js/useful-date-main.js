@@ -11,7 +11,7 @@ var useful = useful || {};
 useful.Date = useful.Date || function () {};
 
 // extend the constructor
-useful.Date.prototype.Main = function (parent, cfg) {
+useful.Date.prototype.Main = function (cfg, parent) {
 	// properties
 	"use strict";
 	this.parent = parent;
