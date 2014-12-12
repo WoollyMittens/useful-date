@@ -11,55 +11,55 @@ var useful = useful || {};
 useful.Date = useful.Date || function () {};
 
 // extend the constructor
-useful.Date.prototype.Main = function (cfg, parent) {
+useful.Date.prototype.Main = function (config, context) {
 	// properties
 	"use strict";
-	this.parent = parent;
-	this.cfg = cfg;
-	this.obj = cfg.element;
+	this.config = config;
+	this.context = context;
+	this.element = config.element;
 	// methods
-	this.start = function () {
+	this.init = function () {
 		// build the interface
 		this.setup();
 		// start the updates
 		this.update();
-		// disable the start function so it can't be started twice
-		this.init = function () {};
+		// return the object
+		return this;
 	};
 	this.setup = function () {
 		// measure the dimensions of the parent element if they are not given
-		this.cfg.width = this.cfg.width || this.obj.offsetWidth;
-		this.cfg.height = this.cfg.height || this.obj.offsetHeight;
+		this.config.width = this.config.width || this.element.offsetWidth;
+		this.config.height = this.config.height || this.element.offsetHeight;
 		// create a container around the element
-		this.cfg.container = document.createElement('span');
-		this.cfg.container.className = 'date';
+		this.config.container = document.createElement('span');
+		this.config.container.className = 'date';
 		// add the container into the label
-		this.obj.parentNode.insertBefore(this.cfg.container, this.obj);
+		this.element.parentNode.insertBefore(this.config.container, this.element);
 		// move the input element into the container
-		this.cfg.container.appendChild(this.obj.parentNode.removeChild(this.obj));
+		this.config.container.appendChild(this.element.parentNode.removeChild(this.element));
 		// add the pick button
-		this.cfg.button = document.createElement('span');
-		this.cfg.button.innerHTML = '<span>' + new Date().getDate() + '</span>';
-		this.cfg.button.className = 'date_button date_passive';
-		this.cfg.container.appendChild(this.cfg.button);
+		this.config.button = document.createElement('span');
+		this.config.button.innerHTML = '<span>' + new Date().getDate() + '</span>';
+		this.config.button.className = 'date_button date_passive';
+		this.config.container.appendChild(this.config.button);
 		// set the event handlers
-		this.handleReverse(this.obj);
-		this.handlePick(this.cfg.button);
+		this.handleReverse(this.element);
+		this.handlePick(this.config.button);
 		this.handleReset(document.body);
 	};
 	this.update = function () {
 		// if there is a valid date
-		if (this.cfg.date) {
+		if (this.config.date) {
 			// update the value
-			this.obj.value = this.cfg.format
-				.replace('d', this.cfg.date.getDate())
-				.replace('m', this.cfg.date.getMonth() + 1)
-				.replace('M', this.cfg.months[this.cfg.date.getMonth()])
-				.replace('y', this.cfg.date.getFullYear());
+			this.element.value = this.config.format
+				.replace('d', this.config.date.getDate())
+				.replace('m', this.config.date.getMonth() + 1)
+				.replace('M', this.config.months[this.config.date.getMonth()])
+				.replace('y', this.config.date.getFullYear());
 		}
 		// else use today
 		else {
-			this.cfg.date = new Date();
+			this.config.date = new Date();
 		}
 	};
 	this.handlePick = function (element) {
@@ -85,7 +85,7 @@ useful.Date.prototype.Main = function (cfg, parent) {
 			var inputValue, inputParts, inputDate;
 			// preprocess problematic dates
 			inputValue = element.value;
-			switch (_this.cfg.format) {
+			switch (_this.config.format) {
 			case 'd/m/y':
 				inputParts = inputValue.split('/');
 				inputDate = (inputValue.length > 1) ? new Date(inputParts[2], inputParts[1] - 1, inputParts[0]) : new Date(inputValue);
@@ -95,19 +95,16 @@ useful.Date.prototype.Main = function (cfg, parent) {
 			}
 			// try to interpret and update the date
 			if (!isNaN(inputDate)) {
-				_this.cfg.date = inputDate;
+				_this.config.date = inputDate;
 			}
 		}, false);
 	};
 	// components
-	this.popup = new this.parent.Popup(this);
-	this.calendar = new this.parent.Calendar(this);
-	// go
-	this.start();
-	return this;
+	this.popup = new this.context.Popup(this);
+	this.calendar = new this.context.Calendar(this);
 };
 
 // return as a require.js module
 if (typeof module !== 'undefined') {
-	exports = module.exports = useful.Date;
+	exports = module.exports = useful.Date.Main;
 }

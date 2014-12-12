@@ -15,30 +15,30 @@ useful.Date.prototype.Calendar = function (parent) {
 	// properties
 	"use strict";
 	this.parent = parent;
-	this.cfg = parent.cfg;
-	this.obj = parent.obj;
+	this.config = parent.config;
+	this.element = parent.element;
 	// methods
 	this.setup = function () {
 		// set the browsed date to the same month as the selected date
-		this.cfg.reference = new Date(this.cfg.date.getFullYear(), this.cfg.date.getMonth(), 1);
+		this.config.reference = new Date(this.config.date.getFullYear(), this.config.date.getMonth(), 1);
 		// get the minimum and maximum dates
-		this.cfg.minimum = new Date(this.obj.getAttribute('min'));
-		if (isNaN(this.cfg.minimum)) {
-			this.cfg.minimum = new Date(0);
+		this.config.minimum = new Date(this.element.getAttribute('min'));
+		if (isNaN(this.config.minimum)) {
+			this.config.minimum = new Date(0);
 		}
-		this.cfg.maximum = new Date(this.obj.getAttribute('max'));
-		if (isNaN(this.cfg.maximum) || this.cfg.maximum.getTime() === 0) {
-			this.cfg.maximum = new Date(2200, 1, 1);
+		this.config.maximum = new Date(this.element.getAttribute('max'));
+		if (isNaN(this.config.maximum) || this.config.maximum.getTime() === 0) {
+			this.config.maximum = new Date(2200, 1, 1);
 		}
 		// build the calendar container
-		this.cfg.calendar = document.createElement('div');
-		this.cfg.calendar.className = 'date_calendar';
-		this.cfg.popup.appendChild(this.cfg.calendar);
+		this.config.calendar = document.createElement('div');
+		this.config.calendar.className = 'date_calendar';
+		this.config.popup.appendChild(this.config.calendar);
 	};
 	this.update = function () {
 		var a, b, offset, month, reference, count, table, thead, tbody, row, col, link, span;
 		// create a working reference
-		reference = new Date(this.cfg.reference.getFullYear(), this.cfg.reference.getMonth(), 1);
+		reference = new Date(this.config.reference.getFullYear(), this.config.reference.getMonth(), 1);
 		// create a table
 		table = document.createElement('table');
 		// create a table thead
@@ -49,7 +49,7 @@ useful.Date.prototype.Calendar = function (parent) {
 		for (a = 0 , b = 7; a < b; a += 1) {
 			// create a cell
 			col = document.createElement('th');
-			col.innerHTML = this.cfg.days[a];
+			col.innerHTML = this.config.days[a];
 			// if this is the first day in the week
 			if (a === 0) {
 				// assign it a classname
@@ -87,7 +87,7 @@ useful.Date.prototype.Calendar = function (parent) {
 				// if this cell has a date in this month (at an offset)
 				if (count - offset === reference.getDate()) {
 					// if this date is not before the minimum or after the maximum
-					if (reference.getTime() > this.cfg.minimum.getTime() && reference.getTime() < this.cfg.maximum.getTime()) {
+					if (reference.getTime() > this.config.minimum.getTime() && reference.getTime() < this.config.maximum.getTime()) {
 						// fill the cell with the date
 						link = document.createElement('a');
 						link.innerHTML = reference.getDate();
@@ -133,9 +133,9 @@ useful.Date.prototype.Calendar = function (parent) {
 				}
 				// if this is the current day
 				if (
-					reference.getFullYear() === this.cfg.date.getFullYear() &&
-					reference.getMonth() === this.cfg.date.getMonth() &&
-					reference.getDate() === this.cfg.date.getDate() + 1
+					reference.getFullYear() === this.config.date.getFullYear() &&
+					reference.getMonth() === this.config.date.getMonth() &&
+					reference.getDate() === this.config.date.getDate() + 1
 				) {
 					// assign it a classname
 					col.className += ' date_current';
@@ -151,20 +151,20 @@ useful.Date.prototype.Calendar = function (parent) {
 		// add the tbody to the table
 		table.appendChild(tbody);
 		// clear the old content from the calendar
-		this.cfg.calendar.innerHTML = '';
+		this.config.calendar.innerHTML = '';
 		// add the table to the calendar
-		this.cfg.calendar.appendChild(table);
+		this.config.calendar.appendChild(table);
 	};
 	this.handleDateClick = function (element, picked) {
 		var _this = this;
 		// set an event handler
 		element.onclick = function () {
 			// set the date from the picked cell
-			_this.cfg.date = picked;
+			_this.config.date = picked;
 			// update the component
 			_this.parent.update();
 			// close the popup
-			_this.cfg.hover = false;
+			_this.config.hover = false;
 			_this.parent.popup.remove();
 			// cancel the click
 			return false;
