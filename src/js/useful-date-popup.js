@@ -12,12 +12,16 @@ useful.Date = useful.Date || function () {};
 
 // extend the constructor
 useful.Date.prototype.Popup = function (parent) {
-	// properties
+
+	// PROPERTIES
+	
 	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
 	this.element = parent.element;
-	// methods
+
+	// METHODS
+	
 	this.setup = function () {
 		// remove any existing popup
 		if (this.config.popup) {
@@ -95,6 +99,7 @@ useful.Date.prototype.Popup = function (parent) {
 		this.handleOver(this.config.popup);
 		this.handleOut(this.config.popup);
 	};
+	
 	this.addMonthSelector = function () {
 		var a, b, option;
 		// create a selector
@@ -113,6 +118,7 @@ useful.Date.prototype.Popup = function (parent) {
 		// add the selector to the popup
 		this.config.selectors.appendChild(this.config.monthPicker);
 	};
+	
 	this.addYearSelector = function () {
 		var option, offset, year;
 		// create a selector
@@ -135,6 +141,7 @@ useful.Date.prototype.Popup = function (parent) {
 		// add the selector to the popup
 		this.config.selectors.appendChild(this.config.yearPicker);
 	};
+	
 	this.update = function () {
 		var a, b, referenceMonth, referenceYear, options;
 		// figure out the values
@@ -155,6 +162,7 @@ useful.Date.prototype.Popup = function (parent) {
 		// update the calendar
 		this.parent.calendar.update();
 	};
+	
 	this.doNotClose = function () {
 		var _this = this;
 		// prevent closing the popup
@@ -164,6 +172,7 @@ useful.Date.prototype.Popup = function (parent) {
 			_this.config.hover = false;
 		}, 100);
 	};
+	
 	this.reveal = function () {
 		var _this = this;
 		// reveal the popup
@@ -171,6 +180,7 @@ useful.Date.prototype.Popup = function (parent) {
 			_this.config.popup.className = _this.config.popup.className.replace('date_hidden', 'date_visible');
 		}, 100);
 	};
+	
 	this.remove = function () {
 		var _this = this;
 		// if the popup exists
@@ -179,6 +189,7 @@ useful.Date.prototype.Popup = function (parent) {
 			_this.config.popup.className = _this.config.popup.className.replace('date_visible', 'date_hidden');
 		}
 	};
+	
 	this.handleClear = function (element) {
 		var _this = this;
 		// set an event handler
@@ -193,6 +204,7 @@ useful.Date.prototype.Popup = function (parent) {
 			return false;
 		};
 	};
+	
 	this.handleToday = function (element) {
 		var _this = this;
 		// set an event handler
@@ -208,6 +220,7 @@ useful.Date.prototype.Popup = function (parent) {
 			return false;
 		};
 	};
+	
 	this.handleNextMonth = function (element) {
 		var _this = this;
 		// set an event handler
@@ -220,6 +233,7 @@ useful.Date.prototype.Popup = function (parent) {
 			return false;
 		};
 	};
+	
 	this.handlePreviousMonth = function (element) {
 		var _this = this;
 		// set an event handler
@@ -232,6 +246,7 @@ useful.Date.prototype.Popup = function (parent) {
 			return false;
 		};
 	};
+	
 	this.handleSelectMonth = function (element) {
 		var _this = this;
 		// set an event handler
@@ -244,6 +259,7 @@ useful.Date.prototype.Popup = function (parent) {
 			_this.update();
 		};
 	};
+	
 	this.handleNextYear = function (element) {
 		var _this = this;
 		// set an event handler
@@ -256,6 +272,7 @@ useful.Date.prototype.Popup = function (parent) {
 			return false;
 		};
 	};
+	
 	this.handlePreviousYear = function (element) {
 		var _this = this;
 		// set an event handler
@@ -268,6 +285,7 @@ useful.Date.prototype.Popup = function (parent) {
 			return false;
 		};
 	};
+	
 	this.handleSelectYear = function (element) {
 		var _this = this;
 		// set an event handler
@@ -280,6 +298,7 @@ useful.Date.prototype.Popup = function (parent) {
 			_this.update();
 		};
 	};
+	
 	this.handleOver = function (element) {
 		var _this = this;
 		// set an event handler
@@ -288,6 +307,7 @@ useful.Date.prototype.Popup = function (parent) {
 			_this.config.hover = true;
 		};
 	};
+	
 	this.handleOut = function (element) {
 		var _this = this;
 		// set an event handler

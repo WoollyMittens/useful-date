@@ -12,12 +12,16 @@ useful.Date = useful.Date || function () {};
 
 // extend the constructor
 useful.Date.prototype.Main = function (config, context) {
-	// properties
+
+	// PROPERTIES
+	
 	"use strict";
 	this.config = config;
 	this.context = context;
 	this.element = config.element;
-	// methods
+
+	// METHODS
+	
 	this.init = function () {
 		// build the interface
 		this.setup();
@@ -26,6 +30,7 @@ useful.Date.prototype.Main = function (config, context) {
 		// return the object
 		return this;
 	};
+	
 	this.setup = function () {
 		// measure the dimensions of the parent element if they are not given
 		this.config.width = this.config.width || this.element.offsetWidth;
@@ -47,6 +52,7 @@ useful.Date.prototype.Main = function (config, context) {
 		this.handlePick(this.config.button);
 		this.handleReset(document.body);
 	};
+	
 	this.update = function () {
 		// if there is a valid date
 		if (this.config.date) {
@@ -62,6 +68,7 @@ useful.Date.prototype.Main = function (config, context) {
 			this.config.date = new Date();
 		}
 	};
+	
 	this.handlePick = function (element) {
 		var _this = this;
 		// set an event handler
@@ -72,6 +79,7 @@ useful.Date.prototype.Main = function (config, context) {
 			event.preventDefault();
 		}, false);
 	};
+	
 	this.handleReset = function (element) {
 		var _this = this;
 		element.addEventListener('click', function (event) {
@@ -79,6 +87,7 @@ useful.Date.prototype.Main = function (config, context) {
 			_this.popup.remove();
 		}, false);
 	};
+	
 	this.handleReverse = function (element) {
 		var _this = this;
 		element.addEventListener('keyup', function () {
@@ -99,7 +108,9 @@ useful.Date.prototype.Main = function (config, context) {
 			}
 		}, false);
 	};
-	// components
+
+	// COMPONENTS
+	
 	this.popup = new this.context.Popup(this);
 	this.calendar = new this.context.Calendar(this);
 };
