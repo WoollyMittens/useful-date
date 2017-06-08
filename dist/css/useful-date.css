@@ -29,6 +29,7 @@ Applies the "clearfix" hack to a container with floating content
 	calendar input field
 */
 span.date, input.date, input[type=date] {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   display: block;
   width: 100%;
@@ -37,6 +38,7 @@ span.date, input.date, input[type=date] {
 span.date {
   position: relative; }
   span.date span.date_button {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     border-radius: 2px;
     background: #ffffff;
@@ -61,8 +63,11 @@ span.date {
 	calendar popup
 */
 div.date_popup {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  background: linear-gradient(top, #ffffff 0%, #ffffff 80%, #ffffff 80%, #cccccc 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), color-stop(80%, #ffffff), color-stop(80%, #ffffff), to(#cccccc));
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 80%, #ffffff 80%, #cccccc 100%);
+  -webkit-box-shadow: 0 1px 3px #999;
   box-shadow: 0 1px 3px #999;
   border-radius: 3px;
   background-color: #ffffff;
@@ -70,6 +75,7 @@ div.date_popup {
   position: absolute;
   width: 24em; }
   div.date_popup * {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box; }
   div.date_popup strong, div.date_popup div.date_selectors {
     left: 50%;
