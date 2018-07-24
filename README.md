@@ -1,4 +1,4 @@
-# useful.date.js: Date Picker
+# date.js: Date Picker
 
 An alternative for the HTML5 date input element.
 
@@ -9,27 +9,19 @@ Try the <a href="http://www.woollymittens.nl/default.php?url=useful-date">demo</
 The stylesheet is best included in the header of the document.
 
 ```html
-<link rel="stylesheet" href="./css/useful-date.css"/>
+<link rel="stylesheet" href="./css/date.css"/>
 ```
 
 This include can be added to the header or placed inline before the script is invoked.
 
 ```html
-<script src="./js/useful-date.js"></script>
-```
-
-To enable the use of HTML5 tags in Internet Explorer 8 and lower, include *html5.js*.
-
-```html
-<!--[if lte IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+<script src="./js/date.js"></script>
 ```
 
 ## How to start the script
 
 ```javascript
-var dates = new useful.Date().init({
+var dates = new  DatePicker({
 	'elements' : document.querySelectorAll('input.date'),
 	// names
 	'years' : [20, -120],

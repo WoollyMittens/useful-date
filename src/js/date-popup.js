@@ -1,27 +1,14 @@
-/*
-Source:
-van Creij, Maurice (2014). "useful.date.js: Date input element", version 20141127, http://www.woollymittens.nl/.
-
-License:
-This work is licensed under a Creative Commons Attribution 3.0 Unported License.
-*/
-
-// create the constructor if needed
-var useful = useful || {};
-useful.Date = useful.Date || function () {};
-
-// extend the constructor
-useful.Date.prototype.Popup = function (parent) {
+// extend the class
+DatePicker.prototype.Popup = function (parent) {
 
 	// PROPERTIES
-	
-	"use strict";
+
 	this.parent = parent;
 	this.config = parent.config;
 	this.element = parent.element;
 
 	// METHODS
-	
+
 	this.setup = function () {
 		// remove any existing popup
 		if (this.config.popup) {
@@ -85,8 +72,8 @@ useful.Date.prototype.Popup = function (parent) {
 		// insert the popup into the document
 		document.body.appendChild(this.config.popup);
 		// position the popup
-		this.config.position = useful.positions.object(this.config.button);
-		this.config.limits = useful.positions.window();
+		this.config.position = positions.object(this.config.button);
+		this.config.limits = positions.window();
 		this.config.position.x -= (this.config.position.x + this.config.popup.offsetWidth > this.config.limits.x) ? this.config.popup.offsetWidth : 0;
 		this.config.position.y -= (this.config.position.y + this.config.popup.offsetHeight > this.config.limits.y) ? this.config.popup.offsetHeight : 0;
 		this.config.popup.style.left = this.config.position.x + 'px';
@@ -99,7 +86,7 @@ useful.Date.prototype.Popup = function (parent) {
 		this.handleOver(this.config.popup);
 		this.handleOut(this.config.popup);
 	};
-	
+
 	this.addMonthSelector = function () {
 		var a, b, option;
 		// create a selector
@@ -118,7 +105,7 @@ useful.Date.prototype.Popup = function (parent) {
 		// add the selector to the popup
 		this.config.selectors.appendChild(this.config.monthPicker);
 	};
-	
+
 	this.addYearSelector = function () {
 		var option, offset, year;
 		// create a selector
@@ -141,7 +128,7 @@ useful.Date.prototype.Popup = function (parent) {
 		// add the selector to the popup
 		this.config.selectors.appendChild(this.config.yearPicker);
 	};
-	
+
 	this.update = function () {
 		var a, b, referenceMonth, referenceYear, options;
 		// figure out the values
@@ -162,7 +149,7 @@ useful.Date.prototype.Popup = function (parent) {
 		// update the calendar
 		this.parent.calendar.update();
 	};
-	
+
 	this.doNotClose = function () {
 		var _this = this;
 		// prevent closing the popup
@@ -172,7 +159,7 @@ useful.Date.prototype.Popup = function (parent) {
 			_this.config.hover = false;
 		}, 100);
 	};
-	
+
 	this.reveal = function () {
 		var _this = this;
 		// reveal the popup
@@ -180,7 +167,7 @@ useful.Date.prototype.Popup = function (parent) {
 			_this.config.popup.className = _this.config.popup.className.replace('date_hidden', 'date_visible');
 		}, 100);
 	};
-	
+
 	this.remove = function () {
 		var _this = this;
 		// if the popup exists
@@ -189,7 +176,7 @@ useful.Date.prototype.Popup = function (parent) {
 			_this.config.popup.className = _this.config.popup.className.replace('date_visible', 'date_hidden');
 		}
 	};
-	
+
 	this.handleClear = function (element) {
 		var _this = this;
 		// set an event handler
@@ -204,7 +191,7 @@ useful.Date.prototype.Popup = function (parent) {
 			return false;
 		};
 	};
-	
+
 	this.handleToday = function (element) {
 		var _this = this;
 		// set an event handler
@@ -220,7 +207,7 @@ useful.Date.prototype.Popup = function (parent) {
 			return false;
 		};
 	};
-	
+
 	this.handleNextMonth = function (element) {
 		var _this = this;
 		// set an event handler
@@ -233,7 +220,7 @@ useful.Date.prototype.Popup = function (parent) {
 			return false;
 		};
 	};
-	
+
 	this.handlePreviousMonth = function (element) {
 		var _this = this;
 		// set an event handler
@@ -246,7 +233,7 @@ useful.Date.prototype.Popup = function (parent) {
 			return false;
 		};
 	};
-	
+
 	this.handleSelectMonth = function (element) {
 		var _this = this;
 		// set an event handler
@@ -259,7 +246,7 @@ useful.Date.prototype.Popup = function (parent) {
 			_this.update();
 		};
 	};
-	
+
 	this.handleNextYear = function (element) {
 		var _this = this;
 		// set an event handler
@@ -272,7 +259,7 @@ useful.Date.prototype.Popup = function (parent) {
 			return false;
 		};
 	};
-	
+
 	this.handlePreviousYear = function (element) {
 		var _this = this;
 		// set an event handler
@@ -285,7 +272,7 @@ useful.Date.prototype.Popup = function (parent) {
 			return false;
 		};
 	};
-	
+
 	this.handleSelectYear = function (element) {
 		var _this = this;
 		// set an event handler
@@ -298,7 +285,7 @@ useful.Date.prototype.Popup = function (parent) {
 			_this.update();
 		};
 	};
-	
+
 	this.handleOver = function (element) {
 		var _this = this;
 		// set an event handler
@@ -307,7 +294,7 @@ useful.Date.prototype.Popup = function (parent) {
 			_this.config.hover = true;
 		};
 	};
-	
+
 	this.handleOut = function (element) {
 		var _this = this;
 		// set an event handler
@@ -317,8 +304,3 @@ useful.Date.prototype.Popup = function (parent) {
 		};
 	};
 };
-
-// return as a require.js module
-if (typeof module !== 'undefined') {
-	exports = module.exports = useful.Date.Popup;
-}

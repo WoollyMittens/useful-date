@@ -1,27 +1,14 @@
-/*
-Source:
-van Creij, Maurice (2014). "useful.date.js: Date input element", version 20141127, http://www.woollymittens.nl/.
-
-License:
-This work is licensed under a Creative Commons Attribution 3.0 Unported License.
-*/
-
-// create the constructor if needed
-var useful = useful || {};
-useful.Date = useful.Date || function () {};
-
-// extend the constructor
-useful.Date.prototype.Calendar = function (parent) {
+// extend the class
+DatePicker.prototype.Calendar = function (parent) {
 
 	// PROPERTIES
-	
-	"use strict";
+
 	this.parent = parent;
 	this.config = parent.config;
 	this.element = parent.element;
 
 	// METHODS
-	
+
 	this.setup = function () {
 		// set the browsed date to the same month as the selected date
 		this.config.reference = new Date(this.config.date.getFullYear(), this.config.date.getMonth(), 1);
@@ -39,7 +26,7 @@ useful.Date.prototype.Calendar = function (parent) {
 		this.config.calendar.className = 'date_calendar';
 		this.config.popup.appendChild(this.config.calendar);
 	};
-	
+
 	this.update = function () {
 		var a, b, offset, month, reference, count, table, thead, tbody, row, col, link, span;
 		// create a working reference
@@ -160,7 +147,7 @@ useful.Date.prototype.Calendar = function (parent) {
 		// add the table to the calendar
 		this.config.calendar.appendChild(table);
 	};
-	
+
 	this.handleDateClick = function (element, picked) {
 		var _this = this;
 		// set an event handler
@@ -177,8 +164,3 @@ useful.Date.prototype.Calendar = function (parent) {
 		};
 	};
 };
-
-// return as a require.js module
-if (typeof module !== 'undefined') {
-	exports = module.exports = useful.Date.Calendar;
-}
