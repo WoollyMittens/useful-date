@@ -34,6 +34,5 @@ var DatePicker = function (config) {
 };
 
 // return as a require.js module
-if (typeof module !== 'undefined') {
-	exports = module.exports = DatePicker;
-}
+if (typeof define != 'undefined') define(['datePicker'], function () { return DatePicker });
+if (typeof module != 'undefined') module.exports = DatePicker;
