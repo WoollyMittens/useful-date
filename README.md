@@ -9,13 +9,32 @@ Try the <a href="http://www.woollymittens.nl/default.php?url=useful-date">demo</
 The stylesheet is best included in the header of the document.
 
 ```html
-<link rel="stylesheet" href="./css/date.css"/>
+<link rel="stylesheet" href="css/date.css"/>
 ```
 
 This include can be added to the header or placed inline before the script is invoked.
 
 ```html
-<script src="./js/date.js"></script>
+<script src="lib/positions.js"></script>
+<script src="js/date.js"></script>
+```
+
+Or use [Require.js](https://requirejs.org/).
+
+```js
+requirejs([
+	'lib/positions.js',
+	'js/date.js'
+], function(positions, DatePicker) {
+	...
+});
+```
+
+Or import into an MVC framework.
+
+```js
+var positions = require('lib/positions.js');
+var DatePicker = require('js/date.js');
 ```
 
 ## How to start the script
